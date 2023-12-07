@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-openai",
+  "version": "1.0.0",
+  "description": "An advanced AI-powered backend application; AI chat interfaces, semantic search, document QA, function calling, and AI images.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^4.20.1"
+  }
+}
