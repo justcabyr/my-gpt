@@ -1,8 +1,7 @@
 import 'dotenv/config'
 import OpenAI from "openai";
-import readline from 'node:readline'
 
-const openai = new OpenAI()
+export const openai = new OpenAI()
 const results = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     'messages': [
