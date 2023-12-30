@@ -7,12 +7,13 @@ import { CharacterTextSplitter } from 'langchain/text_splitter'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 
 const question = process.argv[2] || 'hi'
-const video = `https://youtu.be/zR_iuq2evXo?si=cG8rODgRgXOx9_Cn`
+
+const video = `https://www.youtube.com/watch?v=XR-P7ClHbEA`
 
 export const createStore = (docs) =>
   MemoryVectorStore.fromDocuments(docs, new OpenAIEmbeddings())
 
-const docsFromYTVideo = (video) => {
+const docsFromYTVideo = async (video) => {
   const loader = YoutubeLoader.createFromUrl(video, {
     language: 'en',
     addVideoInfo: true,
@@ -38,7 +39,7 @@ const docsFromPDF = () => {
 }
 
 const loadStore = async () => {
-  const videoDocs = await docsFromPDF(video)
+  const videoDocs = await docsFromYTVideo(video)
   const pdfDocs = await docsFromPDF()
 
   return createStore([...videoDocs, ...pdfDocs])
@@ -49,7 +50,7 @@ const query = async () => {
   const results = await store.similaritySearch(question, 2)
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4',
     temperature: 0,
     messages: [
       {
@@ -66,6 +67,12 @@ const query = async () => {
       },
     ],
   })
+  console.log(
+    `Answer: ${response.choices[0].message.content}\n\nSources: ${results
+      .map((r) => r.metadata.source)
+      .join(', ')}`
+  )
 }
 
 query()
+// node qa.js "where does abdulkabir work?"
