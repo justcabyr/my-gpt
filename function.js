@@ -12,7 +12,6 @@ const messages = [
 
 const functions = {
   calculate({ expression }) {
-    console.log('hello')
     return math.evaluate(expression)
   },
 }
@@ -41,7 +40,6 @@ const getCompletion = (messages) => {
       },
     ],
   })
-  // return response
 }
 
 let response
