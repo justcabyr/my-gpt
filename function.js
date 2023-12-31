@@ -11,11 +11,11 @@ const messages = [
 ]
 
 const functions = {
-  calculate({ expression }) {
+  calculate: ({ expression }) => {
     return math.evaluate(expression)
   },
 
-  async generateImage({ prompt }) {
+  generateImage: async ({ prompt }) => {
     const result = await openai.images.generate({ prompt })
     console.log(prompt)
     console.log(result)

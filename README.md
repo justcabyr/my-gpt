@@ -5,3 +5,7 @@ An advanced AI-powered backend application; AI chat interfaces, semantic search,
 Chat experience
 langchain
 vector store
+openAI apis
+baby agi
+autogpt
+cursor code editor
