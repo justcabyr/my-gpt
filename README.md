@@ -34,3 +34,11 @@ openAI apis
 baby agi
 autogpt
 cursor code editor
+
+## Project Plans
+1. Add a frontend
+    -Auth
+
+2. Add ChatGPT Pro features
+    -Paste image into text chat
+    -Image/PDF upload
