@@ -3,7 +3,7 @@ Chatbot
 
 ## Overview
 
-An advanced AI-powered application with AI chat, PDF processing and AI images. This app will provide a convenient way to interact with OpenAI's powerful language models, such as GPT-3.
+An advanced AI-powered application with AI chat, PDF processing and AI image generation. This app will provide a convenient way to interact with OpenAI's powerful language models, such as GPT-3.
 
 I frequently use the free tier of ChatGPT in my day-to-day tasks, but I wanted to do more. To unlock additional features, I would need to subscribe to ChatGPT Plus, which costs $20 per month. However, by using this app to interact with ChatGPT through the OpenAI APIs, I can explore and use it as much as I want while only being charged for the requests I make. This approach can save me over $2,000 annually compared to subscribing to ChatGPT Plus.
 
