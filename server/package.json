@@ -2,17 +2,20 @@
   "name": "nodejs-openai",
   "version": "1.0.0",
   "description": "An advanced AI-powered backend application; AI chat interfaces, semantic search, document QA, function calling, and AI images.",
-  "main": "index.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch-path=./src ."
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "",
   "dependencies": {
     "advanced-calculator": "^1.1.1",
-    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.20.0",
     "langchain": "^0.0.203",
     "openai": "^4.20.1",
     "pdf-parse": "^1.1.1",

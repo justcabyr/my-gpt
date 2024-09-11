@@ -10,7 +10,7 @@ const results = await openai.chat.completions.create({
         },
         {
             role: 'user',
-            content: 'Hi! Tell me about SUmayyah Musa',
+            content: 'Hi! Tell me about Martin Luther King',
         }
     ]
 })

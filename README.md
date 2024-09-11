@@ -3,9 +3,16 @@ Chatbot
 
 ## Overview
 
-An advanced AI-powered application with AI chat, PDF processing and AI images.
+An advanced AI-powered application with AI chat, PDF processing and AI images. This app will provide a convenient way to interact with OpenAI's powerful language models, such as GPT-3.
 
-This app will provide a convenient way to interact with OpenAI's powerful language models, such as GPT-3.
+I frequently use the free tier of ChatGPT in my day-to-day tasks, but I wanted to do more. To unlock additional features, I would need to subscribe to ChatGPT Plus, which costs $20 per month. However, by using this app to interact with ChatGPT through the OpenAI APIs, I can explore and use it as much as I want while only being charged for the requests I make. This approach can save me over $2,000 annually compared to subscribing to ChatGPT Plus.
+
+While still having access to ChatGPT for everyday use, I can use this app for specific requests. Here are some of the key benefits this app offers me:
+
+- **Unlimited document/image uploads**: Unlike ChatGPT, which has daily limits for image and PDF uploads, this app removes those restrictions.
+- **Access to any GPT model**: I can freely choose the model I want, including more advanced, accurate, and capable ones.
+- **Greater flexibility in requests**: The app allows me to make requests that ChatGPT doesn't support, such as summarizing YouTube videos, among other advanced functionalities.
+
 
 ### Features
 
@@ -17,8 +24,14 @@ This app will provide a convenient way to interact with OpenAI's powerful langua
 
 ### Tech Stack
 
-- React (Frontend)
-- Express (Backend)
+- Frontend:
+    - React
+
+- Backend:
+    - Node
+    - Express
+    - Axios
+
 
 ### APIs
 
@@ -45,45 +58,35 @@ This app will provide a convenient way to interact with OpenAI's powerful langua
 ![](pdf-and-image-page.jpeg)
 
 
-
-
-# nodejs-openai
-
-An advanced AI-powered backend application; AI chat interfaces, semantic search, document QA, function calling, and AI images.
-
-Node.js OpenAI is a simple wrapper library for accessing the OpenAI API in Node.js applications. This library provides a convenient way to interact with OpenAI's powerful language models, such as GPT-3, from within your Node.js projects.
-
-Chatbot
-This file implements a simple chatbot using the OpenAI API. The chatbot interacts with the user through a command-line interface (CLI) and responds to user input using the GPT-3.5 language model.
-
 ## Roadmap
 
 ### Frontend
 
 - UI:
-    - Pray to God for help
+    - Create a mockup for the four pages
+    - Create pages with basic styling and complete app functionalities
+    - Create re-usable components
+    - Finish up styling
 
 ### Backend
 
 - Chat:
     - Update Chat system from terminal to user input
     - Add response streaming feature
-    - GPT feature? Pro?
+    - Implement webscoket for real time communication
+    - Add other GPT pro features
 
 - Auth:
-    - Implement a basic access code auth, sers will need to provide access code to log in
-    - Create random access codes (not to be pushed to the server) - and disable after use
-    - Track token limit for each access code
+    - Implement a basic access code auth, users will need to provide access code to log in
+    - Create random access codes (not to be pushed to the server) - and disable after first time use
+    - Track token limit for each access code and log users out after reaching limit
 
 - File upload:
-    - Handle PDF upload.
-    - Handle image upload.
-    - Handle image paste into chat
-    - Implement GPT feature to work with images
+    - Allow users to upload PDF, set a PDF size limit.
+    - Allow users to image upload.
+    - Allow users paste image into the chat
+    - Allow users drag/drop PDFs and images
 
 - Image Generator:
     - Handle image export/download
-    - Implement a different image upload feature (Like Claude - but still OpenAI)
-
-- Diving Deeper:
-    - Other ChatGPT pro features?
+    - Implement a different image upload feature (Like Fooocus/Claude - but still OpenAI)

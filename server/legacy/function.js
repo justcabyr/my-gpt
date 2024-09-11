@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { openai } from './openai.js'
+import { openai } from '../src/openai.js'
 import math from 'advanced-calculator'
 const QUESTION = process.argv[2] || 'hi'
 
@@ -53,8 +53,7 @@ const getCompletion = (messages) => {
           properties: {
             prompt: {
               type: 'string',
-              description:
-                'The description of the image to be generated',
+              description: 'The description of the image to be generated',
             },
           },
           required: ['prompt'],
