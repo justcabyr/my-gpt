@@ -1,3 +1,52 @@
+# Project Title
+Chatbot
+
+## Overview
+
+An advanced AI-powered application with AI chat, PDF processing and AI images.
+
+This app will provide a convenient way to interact with OpenAI's powerful language models, such as GPT-3.
+
+### Features
+
+- As a user, I want to be able to chat with an AI.
+- As a user, I want to be able to upload a PDF and ask an AI questions about the PDF document.
+- As a user, I want to be able to generate random AI images.
+
+## Implementation
+
+### Tech Stack
+
+- React (Frontend)
+- Express (Backend)
+
+### APIs
+
+- OpenAI APIs
+
+### Sitemap
+
+- Login page
+- Chat page (Landing page)
+- PDF Manager page
+- Image generation page
+
+### Auth
+
+- Implement a basic access code auth, users will need to provide access code to log in
+- Create random access codes (not to be pushed to the server) - and disable after use
+
+### Mockups
+
+#### Login and Chat Page
+![](login-and-chat-page.jpeg)
+
+#### PDF Manager and Image Generations Page
+![](pdf-and-image-page.jpeg)
+
+
+
+
 # nodejs-openai
 
 An advanced AI-powered backend application; AI chat interfaces, semantic search, document QA, function calling, and AI images.
