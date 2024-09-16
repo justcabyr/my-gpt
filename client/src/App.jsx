@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import ChatPage from "./pages/ChatPage/ChatPage";
 import DocumentPage from "./pages/DocumentPage/DocumentPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import QuestionPage from "./pages/QuestionPage/QuestionPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/chat" replace={true} />} />
             <Route path="/chat" element={<ChatPage />} />
+            <Route path="/question" element={<QuestionPage />} />
             <Route path="/document" element={<DocumentPage />} />
 
             <Route path="*" element={<NotFoundPage />} />

@@ -1,4 +1,4 @@
-function ChatPage(params) {
+function ChatPage() {
   return <p>Chat Page</p>;
 }
 

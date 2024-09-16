@@ -90,3 +90,16 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
 - Image Generator:
     - Handle image export/download
     - Implement a different image upload feature (Like Fooocus/Claude - but still OpenAI)
+
+## Development Progress
+1. Backend
+    - Successfully implemented chat feature via terminal (8 months ago)
+    - Switched to server/client setup (09-05)
+    - Successfully sent prompt and displayed response (09-10)
+    - Implemented streaming, but getting JSON.parse error becasue streaming breaks response and hereby incomplete JSON
+    - Removed empty lines and strings and response placeholder texts before parsing - successfully stream response but terminal still shows error parsing JSON
+    - Milestone 1 - Ignoring the terminal error, user can successfully send query and get a response(09-11)
+
+2. Frontend
+    - Successfully collect user input and stream streaming response (09-11)
+    - Update ChatPage to QuestionPage. QuestionPage - user asks one question and stream ends. Goal for ChatPage - user continues conversation with GPT in stream(09-11)

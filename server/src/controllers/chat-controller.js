@@ -14,7 +14,7 @@ export const chatController = async (req, res) => {
         'Content-Type': 'application/json',
       },
       data: {
-        model: 'gpt-4', // Or 'gpt-3.5-turbo'
+        model: 'gpt-4',
         messages: [{ role: 'user', content: prompt }],
         stream: true,
       },
@@ -26,19 +26,30 @@ export const chatController = async (req, res) => {
     res.setHeader('Connection', 'keep-alive')
 
     openaiRes.data.on('data', (chunk) => {
-      const jsonString = chunk.toString('utf-8').trim()
+      const chunkString = chunk.toString('utf-8').trim()
 
-      // Handle the streaming chunks from OpenAI API
-      if (jsonString.startsWith('data:')) {
-        const jsonResponse = JSON.parse(jsonString.slice(5))
+      const chunkLines = chunkString.split('\n')
 
-        if (jsonResponse.choices) {
-          const token = jsonResponse.choices[0].delta.content
-          if (token) {
-            res.write(token)
+      chunkLines.forEach((line) => {
+        if (line.startsWith('data: ')) {
+          const jsonLine = line.slice(6)
+
+          if (jsonLine !== '[DONE]') {
+            try {
+              const jsonResponse = JSON.parse(jsonLine)
+
+              if (jsonResponse.choices) {
+                const token = jsonResponse.choices[0].delta.content
+                if (token) {
+                  res.write(token)
+                }
+              }
+            } catch (error) {
+              console.error('JSON parsing error:', error)
+            }
           }
         }
-      }
+      })
     })
 
     openaiRes.data.on('end', () => {

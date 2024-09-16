@@ -1,4 +1,4 @@
-function DocumentPage(params) {
+function DocumentPage() {
   return <p>Document Page</p>;
 }
 
