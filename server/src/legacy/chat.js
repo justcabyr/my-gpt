@@ -1,5 +1,5 @@
 import readline from 'node:readline'
-import { openai } from '../src/openai.js'
+import { openai } from '../config/openai.js'
 
 const rl = readline.createInterface({
   input: process.stdin,
