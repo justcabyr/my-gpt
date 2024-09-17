@@ -4,12 +4,11 @@ import { apiUrl } from "../../config/config.js";
 function QuestionPage() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState("");
-  // const [history, setHistory] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchChatStream = async (prompt) => {
     setIsLoading(true);
-    setMessages(""); // Clear previous messages
+    setMessages("");
 
     const response = await fetch(`${apiUrl}/chat`, {
       method: "POST",
