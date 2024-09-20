@@ -105,3 +105,4 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
     - Successfully collect user input and stream streaming response (09-11)
     - Update ChatPage to QuestionPage. QuestionPage - user asks one question and stream ends. Goal for ChatPage - user continues conversation with GPT in stream(09-11)
     - Moved API call from backend to frontend and streaming now works (09-16)
+    - Vite is killing me, for two days I can't resolve OpenAIEmbeddings from langchain. I have tried all the methods. Now I'll try to move creatStore function to the backend and then send the vectorized data to the frontend. (09-20)
