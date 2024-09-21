@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const apiKey = process.env.OPENAI_API_KEY
 
-export const chatController = async (req, res) => {
+export const questionController = async (req, res) => {
   const { prompt } = req.body
 
   try {
