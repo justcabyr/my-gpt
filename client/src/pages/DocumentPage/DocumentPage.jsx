@@ -3,16 +3,16 @@ import { API_URL } from '../../config/config.js';
 
 function DocumentPage() {
   const [file, setFile] = useState(null);
-  const [message, setMessage] = useState('');
+  const [response, setResponse] = useState('');
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
+  const handleFileUpload = async (e) => {
     e.preventDefault();
     if (!file) {
-      setMessage('Please select a file');
+      setResponse('Please select a file');
       return;
     }
 
@@ -25,22 +25,27 @@ function DocumentPage() {
         body: formData,
       });
       const result = await res.json();
-      setMessage(result.message);
+      setResponse(result.message);
     } catch (error) {
-      setMessage('Error uploading file');
+      setResponse('Error uploading file');
       console.error(error);
     }
   };
 
   return (
-    <div className="App">
-      <h1>Upload PDF</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" accept="application/pdf" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
-      <p>{message}</p>
+    <div>
+      <div className="document__upload">
+        <h1>Upload PDF</h1>
+        <form onSubmit={handleFileUpload}>
+          <input type="file" accept="application/pdf" onChange={handleFileChange} />
+          <button type="submit">Upload</button>
+        </form>
+        <p>{response}</p>
+      </div>
+
+      <div className="document__form"></div>
     </div>
+    // Update message variable to something else and update UI to modal. Green for success and red for error and print response
   );
 }
 
