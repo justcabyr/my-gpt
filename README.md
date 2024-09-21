@@ -60,6 +60,11 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
 
 ## Roadmap
 
+- Check for input validation for all entries
+- Put external request in try catch and handle errors accordingly
+- Reusable components and styling
+- Middlewares?
+
 ### Frontend
 
 - UI:

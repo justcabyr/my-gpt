@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../config/config.js';
 import axios from 'axios';
+import './DocumentPage.scss';
 
 function DocumentPage() {
   const [file, setFile] = useState(null);
@@ -61,7 +62,7 @@ function DocumentPage() {
   };
 
   return (
-    <div>
+    <div className='chat'>
       <div className="document__upload">
         <h1>Upload PDF</h1>
         <div className="chat__wrapper">
