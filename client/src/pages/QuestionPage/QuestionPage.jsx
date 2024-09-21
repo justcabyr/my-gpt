@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { apiUrl } from "../../config/config.js";
+import { useState } from 'react';
+import { API_URL } from '../../config/config.js';
 
 function QuestionPage() {
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState("");
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchChatStream = async (prompt) => {
     setIsLoading(true);
-    setMessages("");
+    setMessages('');
 
-    const response = await fetch(`${apiUrl}/chat`, {
-      method: "POST",
+    const response = await fetch(`${API_URL}/question`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ prompt }),
     });
@@ -36,7 +36,7 @@ function QuestionPage() {
     e.preventDefault();
     if (input.trim()) {
       fetchChatStream(input);
-      setInput("");
+      setInput('');
     }
   };
 
