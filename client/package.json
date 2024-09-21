@@ -12,6 +12,7 @@
   "dependencies": {
     "@langchain/core": "^0.3.3",
     "@langchain/openai": "^0.3.0",
+    "axios": "^1.7.7",
     "langchain": "^0.3.2",
     "openai": "^4.62.1",
     "pdf-parse": "^1.1.1",
