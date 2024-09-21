@@ -18,7 +18,6 @@ function ChatPage() {
   const sendMessage = async () => {
     if (input.trim()) {
       const userMessage = { role: "user", content: input };
-      console.log("input", input);
       setMessages((prev) => [...prev, userMessage]);
       setInput("");
       setIsLoading(true);
