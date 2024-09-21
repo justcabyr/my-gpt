@@ -100,9 +100,12 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
     - Edit: Streaming didn't work (09-16)
     - Removed empty lines and strings and response placeholder texts before parsing - successfully stream response but terminal still shows error parsing JSON (09-11)
     - Milestone 1 - Ignoring the terminal error, user can successfully send query and get a response(09-11)
+    - Discovered the Langchain package I use to work with YouTube links no longer work today. Not a priority feature. (09-20)
+    - PDF manager works for image PDF where text content can't be selected or copied (09-20)
 
 2. Frontend
     - Successfully collect user input and stream streaming response (09-11)
     - Update ChatPage to QuestionPage. QuestionPage - user asks one question and stream ends. Goal for ChatPage - user continues conversation with GPT in stream(09-11)
     - Moved API call from backend to frontend and streaming now works (09-16)
-    - Vite is killing me, for two days I can't resolve OpenAIEmbeddings from langchain. I have tried all the methods. Now I'll try to move creatStore function to the backend and then send the vectorized data to the frontend. (09-20)
+    - Vite is killing me, for two days I can't resolve OpenAIEmbeddings from langchain. I have tried all the methods. Now I'll try to move creatStore function to the backend and then send the vectorized data to the frontend. (feat/chat+streaming - /pull/7) (09-20)
+    - Vite is not the problem, rather you can't serve web loaders into a client because their dependencies only work in Node (09-21)
