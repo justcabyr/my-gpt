@@ -10,8 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@langchain/core": "^0.3.3",
+    "@langchain/openai": "^0.3.0",
+    "axios": "^1.7.7",
+    "langchain": "^0.3.2",
+    "openai": "^4.62.1",
+    "pdf-parse": "^1.1.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "sass": "^1.78.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
