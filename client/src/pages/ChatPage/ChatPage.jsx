@@ -1,43 +1,43 @@
-import { useState, useEffect } from "react";
-import './ChatPage.scss'
+import { useState, useEffect } from 'react';
+import './ChatPage.scss';
 
 const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 function ChatPage() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [messages, setMessages] = useState(() => {
-    const savedMessages = sessionStorage.getItem("chatMessages");
+    const savedMessages = sessionStorage.getItem('chatMessages');
     return savedMessages ? JSON.parse(savedMessages) : [];
   });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    sessionStorage.setItem("chatMessages", JSON.stringify(messages));
+    sessionStorage.setItem('chatMessages', JSON.stringify(messages));
   }, [messages]);
 
   const sendMessage = async () => {
     if (input.trim()) {
-      const userMessage = { role: "user", content: input };
+      const userMessage = { role: 'user', content: input };
       setMessages((prev) => [...prev, userMessage]);
-      setInput("");
+      setInput('');
       setIsLoading(true);
 
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: "gpt-4",
-          messages: [{ role: "user", content: input }],
+          model: 'gpt-4',
+          messages: [{ role: 'user', content: input }],
           stream: true,
         }),
       });
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let botResponse = "";
+      let botResponse = '';
 
       while (true) {
         const { done, value } = await reader.read();
@@ -45,12 +45,12 @@ function ChatPage() {
 
         const chunk = decoder.decode(value, { stream: true });
 
-        const lines = chunk.split("\n").filter((line) => line.trim() !== "");
+        const lines = chunk.split('\n').filter((line) => line.trim() !== '');
         for (const line of lines) {
-          if (line.startsWith("data:")) {
-            const json = line.replace(/^data: /, "");
+          if (line.startsWith('data:')) {
+            const json = line.replace(/^data: /, '');
 
-            if (json === "[DONE]") {
+            if (json === '[DONE]') {
               break;
             }
 
@@ -61,13 +61,13 @@ function ChatPage() {
                 botResponse += content;
               }
             } catch (error) {
-              console.error("Error parsing streamed response:", error);
+              console.error('Error parsing streamed response:', error);
             }
           }
         }
       }
 
-      setMessages((prev) => [...prev, { role: "assistant", content: botResponse }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: botResponse }]);
       setIsLoading(false);
     }
   };
@@ -78,11 +78,11 @@ function ChatPage() {
   };
 
   return (
-    <div className="chat">
-      <h1>Chatbot with OpenAI & Streaming</h1>
+    <>
+      <h1>Chat with an AI</h1>
       <div className="chat__wrapper">
         {messages.map((msg, index) => (
-          <div key={index} className={`chat__message ${msg.role === "user" ? "left" : "right"}`}>
+          <div key={index} className={`chat__message ${msg.role === 'user' ? 'left' : 'right'}`}>
             {msg.content}
           </div>
         ))}
@@ -96,10 +96,10 @@ function ChatPage() {
           disabled={isLoading}
         />
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Send"}
+          {isLoading ? 'Loading...' : 'Send'}
         </button>
       </form>
-    </div>
+    </>
   );
 }
 

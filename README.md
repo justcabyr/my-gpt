@@ -96,6 +96,11 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
     - Handle image export/download
     - Implement a different image upload feature (Like Fooocus/Claude - but still OpenAI)
 
+- Database:
+    - Store user email
+    - Access Codes and status
+    - PDF filename
+
 ## Development Progress
 1. Backend
     - Successfully implemented chat feature via terminal (8 months ago)

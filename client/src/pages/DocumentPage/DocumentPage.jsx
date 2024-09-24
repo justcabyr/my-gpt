@@ -64,7 +64,7 @@ function DocumentPage() {
   return (
     <div className='chat'>
       <div className="document__upload">
-        <h1>Upload PDF</h1>
+        <h1>Upload a PDF and ask questions</h1>
         <div className="chat__wrapper">
           {messages.map((msg, index) => (
             <div key={index} className={`chat__message ${msg.role === 'user' ? 'left' : 'right'}`}>
