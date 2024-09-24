@@ -21,12 +21,12 @@ function ImagePage() {
               </Link>
             </li>
             <li>
-              <Link to="/" className="sidebar__link">
+              <Link to="/document" className="sidebar__link">
                 Document
               </Link>
             </li>
             <li>
-              <Link to="/" className="sidebar__link">
+              <Link to="/image" className="sidebar__link">
                 Image
               </Link>
             </li>
