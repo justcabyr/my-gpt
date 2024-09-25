@@ -32,7 +32,7 @@ function DocumentPage() {
     formData.append('file', file);
 
     try {
-      const res = await fetch(`${API_URL}/upload`, {
+      const res = await fetch(`${API_URL}/upload-pdf`, {
         method: 'POST',
         body: formData,
       });

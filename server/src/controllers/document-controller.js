@@ -77,6 +77,7 @@ const loadStore = async () => {
 }
 
 export const queryPDF = async (req, res) => {
+  // This chunk is reusable
   try {
     const { prompt } = req.body
 
