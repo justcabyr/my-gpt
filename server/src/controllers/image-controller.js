@@ -1,17 +1,16 @@
 import Tesseract from 'tesseract.js'
 import path from 'path'
+import fs from 'fs'
 import multer from 'multer'
 import { openai } from '../config/openai.js'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { fileURLToPath } from 'url'
 
-const apiKey = process.env.OPENAI_API_KEY
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const imageFilePath = path.resolve(__dirname, '../../uploads', 'sample')
 
+// Modify to allow only one image file in directory
 const checkFileType = (file, cb) => {
   const filetypes = /jpeg|jpg|png/
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
@@ -62,13 +61,27 @@ export const uploadImage = async (req, res) => {
   })
 }
 
-const imagePath = path.resolve(__dirname, '../../uploads/sample.png')
-// resolve for all image format types
+const uploadsDir = path.resolve(__dirname, '../../uploads')
+const getImagePath = () => {
+  const supportedExtensions = ['.jpg', '.jpeg', '.png'] 
+  for (const ext of supportedExtensions) {
+    const imagePath = path.join(uploadsDir, `sample${ext}`)
+    if (fs.existsSync(imagePath)) {
+      return imagePath
+    }
+  }
+  return null
+}
 
 export const createStore = (docs) =>
   MemoryVectorStore.fromDocuments(docs, new OpenAIEmbeddings())
 
 const textFromImage = async () => {
+  const imagePath = getImagePath()
+
+  if (!imagePath) {
+    throw new Error('No valid image file found in the uploads folder.')
+  }
   const result = await Tesseract.recognize(imagePath, 'eng')
   return result.data.text
 }

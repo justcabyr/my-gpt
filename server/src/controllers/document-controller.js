@@ -7,8 +7,6 @@ import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { CharacterTextSplitter } from 'langchain/text_splitter'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 
-const apiKey = process.env.OPENAI_API_KEY
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const pdfFilePath = path.resolve(__dirname, '../../uploads', 'doc.pdf')
