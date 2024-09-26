@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '../../config/config.js';
 import axios from 'axios';
 import './DocumentPage.scss';
+import bot from '../../assets/icons/bot.png';
+import user from '../../assets/icons/user.png';
 
 function DocumentPage() {
   const [file, setFile] = useState(null);
@@ -32,7 +34,7 @@ function DocumentPage() {
     formData.append('file', file);
 
     try {
-      const res = await fetch(`${API_URL}/upload`, {
+      const res = await fetch(`${API_URL}/upload-pdf`, {
         method: 'POST',
         body: formData,
       });
@@ -62,22 +64,23 @@ function DocumentPage() {
   };
 
   return (
-    <div className='chat'>
-      <div className="document__upload">
-        <h1>Upload a PDF and ask questions</h1>
-        <div className="chat__wrapper">
-          {messages.map((msg, index) => (
-            <div key={index} className={`chat__message ${msg.role === 'user' ? 'left' : 'right'}`}>
-              {msg.content}
-            </div>
-          ))}
-        </div>
-        <form onSubmit={handleFileUpload}>
-          <input type="file" accept="application/pdf" onChange={handleFileChange} />
-          <button type="submit">Upload</button>
-        </form>
-        <p>{response}</p>
+    <div className="chat">
+      <h1>Upload a PDF and ask questions</h1>
+      <form onSubmit={handleFileUpload} className="chat__input">
+        <input type="file" accept="application/pdf" onChange={handleFileChange} />
+        <button type="submit">Upload</button>
+      </form>
+      <div className="chat__wrapper">
+        {messages.map((msg, index) => (
+          <div key={index} className={`chat__message ${msg.role === 'user' ? 'left' : 'right'}`}>
+            <div>
+              <img src={msg.role === 'user' ? user : bot} className={'avatar'} alt="profile avatar" />
+            </div>{' '}
+            {msg.content}
+          </div>
+        ))}
       </div>
+      <p>{response}</p>
 
       <div className="document__form">
         <form onSubmit={handleSubmit} className="chat__input">

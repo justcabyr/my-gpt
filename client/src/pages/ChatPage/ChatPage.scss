@@ -13,6 +13,7 @@
 }
 
 .chat__message {
+  display: flex;
   max-width: 70%;
   padding: 10px;
   margin-bottom: 10px;
@@ -22,12 +23,12 @@
 
 .chat__message.left {
   background-color: #d1e7dd;
-//   align-self: flex-start;
+  // align-self: flex-start;
 }
 
 .chat__message.right {
   background-color: #f8d7da;
-//   align-self: flex-end;
+  // align-self: flex-end;
 }
 
 .chat__input {

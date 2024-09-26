@@ -7,11 +7,9 @@ import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { CharacterTextSplitter } from 'langchain/text_splitter'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 
-const apiKey = process.env.OPENAI_API_KEY
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const pdfFilePath = path.resolve(__dirname, '../../uploads', 'doc.pdf')
+const pdfFilePath = path.resolve(__dirname, '../../uploads/document', 'doc.pdf')
 
 const checkFileType = (file, cb) => {
   const filetypes = /pdf/
@@ -28,7 +26,7 @@ const checkFileType = (file, cb) => {
 export const uploadPDF = async (req, res) => {
   // Set storage engine
   const storage = multer.diskStorage({
-    destination: './uploads/',
+    destination: './uploads/document/',
     filename: function (req, file, cb) {
       cb(null, 'doc.pdf')
     },
@@ -77,6 +75,7 @@ const loadStore = async () => {
 }
 
 export const queryPDF = async (req, res) => {
+  // This chunk is reusable
   try {
     const { prompt } = req.body
 

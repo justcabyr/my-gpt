@@ -5,6 +5,7 @@ import DocumentPage from "./pages/DocumentPage/DocumentPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Sidebar from './components/Sidebar/Sidebar';
 import QuestionPage from "./pages/QuestionPage/QuestionPage";
+import ImagePage from './pages/ImagePage/ImagePage';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/question" element={<QuestionPage />} />
             <Route path="/document" element={<DocumentPage />} />
+            <Route path="/image" element={<ImagePage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

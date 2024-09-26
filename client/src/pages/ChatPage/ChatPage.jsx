@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import './ChatPage.scss';
+import bot from '../../assets/icons/bot.png';
+import user from '../../assets/icons/user.png';
 
 const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
@@ -78,11 +80,14 @@ function ChatPage() {
   };
 
   return (
-    <>
+    <div className="chat">
       <h1>Chat with an AI</h1>
       <div className="chat__wrapper">
         {messages.map((msg, index) => (
           <div key={index} className={`chat__message ${msg.role === 'user' ? 'left' : 'right'}`}>
+           <div>
+           <img src={msg.role === 'user' ? user : bot} className={'avatar'} alt="profile avatar" />
+            </div> 
             {msg.content}
           </div>
         ))}
@@ -99,7 +104,7 @@ function ChatPage() {
           {isLoading ? 'Loading...' : 'Send'}
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

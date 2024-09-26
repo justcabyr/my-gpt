@@ -18,7 +18,7 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
 
 - As a user, I want to be able to chat with an AI.
 - As a user, I want to be able to upload a PDF and ask an AI questions about the PDF document.
-- As a user, I want to be able to generate random AI images.
+- As a user, I want to be able to upload an image and ask an AI questions about the image.
 
 ## Implementation
 
@@ -92,9 +92,9 @@ While still having access to ChatGPT for everyday use, I can use this app for sp
     - Allow users paste image into the chat
     - Allow users drag/drop PDFs and images
 
-- Image Generator:
+<!-- - Image Generator:
     - Handle image export/download
-    - Implement a different image upload feature (Like Fooocus/Claude - but still OpenAI)
+    - Implement a different image upload feature (Like Fooocus/Claude - but still OpenAI) -->
 
 - Database:
     - Store user email
