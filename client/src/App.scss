@@ -9,7 +9,7 @@
 }
 
 .sidebar {
-  width: 250px;
+  width: 200px;
   height: 100vh;
   background-color: #333;
   color: white;
@@ -63,4 +63,14 @@
   flex: 1;
   padding: 20px;
   background-color: #f4f4f4;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+h1 {
+  text-align: center;
 }

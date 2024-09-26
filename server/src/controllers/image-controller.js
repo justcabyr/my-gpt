@@ -26,7 +26,7 @@ const checkFileType = (file, cb) => {
 export const uploadImage = async (req, res) => {
   // Set storage engine
   const storage = multer.diskStorage({
-    destination: './uploads/',
+    destination: './uploads/image/',
     filename: function (req, file, cb) {
       const ext = path.extname(file.originalname).toLowerCase()
       cb(null, `sample${ext}`)
@@ -61,7 +61,7 @@ export const uploadImage = async (req, res) => {
   })
 }
 
-const uploadsDir = path.resolve(__dirname, '../../uploads')
+const uploadsDir = path.resolve(__dirname, '../../uploads.image')
 const getImagePath = () => {
   const supportedExtensions = ['.jpg', '.jpeg', '.png'] 
   for (const ext of supportedExtensions) {
@@ -80,7 +80,7 @@ const textFromImage = async () => {
   const imagePath = getImagePath()
 
   if (!imagePath) {
-    throw new Error('No valid image file found in the uploads folder.')
+    throw new Error('No valid image file found in the image folder.')
   }
   const result = await Tesseract.recognize(imagePath, 'eng')
   return result.data.text
