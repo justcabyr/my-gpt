@@ -1,61 +1,61 @@
 import { useState } from 'react';
-import { API_URL } from '../../config/config.js';
+import axios from 'axios';
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 function QuestionPage() {
-  const [input, setInput] = useState('');
-  const [messages, setMessages] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [prompt, setPrompt] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  // const [messages, setMessages] = useState('');
 
-  const fetchChatStream = async (prompt) => {
-    setIsLoading(true);
-    setMessages('');
+  const [loading, setLoading] = useState(false);
 
-    const response = await fetch(`${API_URL}/question`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prompt }),
-    });
+  const generateImage = async () => {
+    console.log(prompt)
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/images/generations',
+        {
+          prompt: prompt,
+          n: 1,
+          size: '1024x1024',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      const chunk = decoder.decode(value);
-      setMessages((prev) => prev + chunk);
+      // Assuming the response contains a URL to the generated image
+      setImageUrl(response.data.data[0].url);
+    } catch (error) {
+      console.error('Error generating image:', error);
     }
-
-    setIsLoading(false);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (input.trim()) {
-      fetchChatStream(input);
-      setInput('');
-    }
+    setLoading(false);
   };
 
   return (
-    <div className="App">
-      <h1>Chatbot with OpenAI & Streaming</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="chat">
+      <h1>Image Generator</h1>
+      <div className="chat__message">
+        {/* <h2>Generated Image:</h2> */}
+        <img src={imageUrl} style={{ maxWidth: '100%', height: 'auto' }} />
+      </div>
+      <form className="chat__input">
         <input
           type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
           placeholder="Enter a prompt..."
-          disabled={isLoading}
+          disabled={loading}
         />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" onClick={generateImage} disabled={loading}>
           Send
         </button>
       </form>
-      <div className="chat-window">{isLoading ? <p>Loading...</p> : <p>{messages}</p>}</div>
+      {/* <div className="chat-window">{loading ? <p>Loading...</p> : <p>{history}</p>}</div> */}
     </div>
   );
 }
