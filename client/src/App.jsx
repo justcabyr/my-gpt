@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/chat" replace={true} />} />
             <Route path="/chat" element={<ChatPage />} />
-            <Route path="/question" element={<QuestionPage />} />
+            <Route path="/generator" element={<QuestionPage />} />
             <Route path="/document" element={<DocumentPage />} />
             <Route path="/image" element={<ImagePage />} />
 

@@ -17,17 +17,22 @@ function ImagePage() {
           <ul>
             <li>
               <Link to="/" className="sidebar__link">
-                Home
+                Chat Home
               </Link>
             </li>
             <li>
               <Link to="/document" className="sidebar__link">
-                Document
+                Document Processor
               </Link>
             </li>
             <li>
               <Link to="/image" className="sidebar__link">
-                Image
+                Image Processor
+              </Link>
+            </li>
+            <li>
+              <Link to="/generator" className="sidebar__link">
+                Image Generator
               </Link>
             </li>
           </ul>

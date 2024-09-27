@@ -41,7 +41,7 @@ function QuestionPage() {
       <h1>Image Generator</h1>
       <div className="chat__message">
         {/* <h2>Generated Image:</h2> */}
-        <img src={imageUrl} style={{ maxWidth: '100%', height: 'auto' }} />
+        <img src={imageUrl} style={{ maxWidth: '75%', height: 'auto' }} />
       </div>
       <form className="chat__input">
         <input
