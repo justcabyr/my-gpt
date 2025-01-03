@@ -42,3 +42,47 @@ cursor code editor
 2. Add ChatGPT Pro features
     -Paste image into text chat
     -Image/PDF upload
+
+
+## Roadmap
+
+- Check for input validation for all entries
+- Put external request in try catch and handle errors accordingly
+- Reusable components and styling
+- Middlewares?
+
+### Frontend
+
+- UI:
+    - Create a mockup for the four pages
+    - Create pages with basic styling and complete app functionalities
+    - Create re-usable components
+    - Finish up styling
+
+### Backend
+
+- Chat:
+    - Update Chat system from terminal to user input
+    - Add response streaming feature
+    - Implement webscoket for real time communication
+    - Add other GPT pro features
+
+- Auth:
+    - Implement a basic access code auth, users will need to provide access code to log in
+    - Create random access codes (not to be pushed to the server) - and disable after first time use
+    - Track token limit for each access code and log users out after reaching limit
+
+- File upload:
+    - Allow users to upload PDF, set a PDF size limit.
+    - Allow users to image upload.
+    - Allow users paste image into the chat
+    - Allow users drag/drop PDFs and images
+
+- Image Generator:
+    - Handle image export/download
+    - Implement a different image upload feature (Like Fooocus/Claude)
+
+- Database:
+    - Store user email
+    - Access Codes and status
+    - PDF filename

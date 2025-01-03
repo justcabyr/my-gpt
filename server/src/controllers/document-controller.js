@@ -7,11 +7,9 @@ import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { CharacterTextSplitter } from 'langchain/text_splitter'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 
-const apiKey = process.env.OPENAI_API_KEY
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const pdfFilePath = path.resolve(__dirname, '../../uploads', 'doc.pdf')
+const pdfFilePath = path.resolve(__dirname, '../../uploads/document', 'doc.pdf')
 
 const checkFileType = (file, cb) => {
   const filetypes = /pdf/
@@ -28,7 +26,7 @@ const checkFileType = (file, cb) => {
 export const uploadPDF = async (req, res) => {
   // Set storage engine
   const storage = multer.diskStorage({
-    destination: './uploads/',
+    destination: './uploads/document/',
     filename: function (req, file, cb) {
       cb(null, 'doc.pdf')
     },
@@ -77,38 +75,44 @@ const loadStore = async () => {
 }
 
 export const queryPDF = async (req, res) => {
-  const { prompt } = req.body
+  // This chunk is reusable
+  try {
+    const { prompt } = req.body
 
-  if (!prompt || typeof prompt !== 'string') {
-    return res
-      .status(400)
-      .json({ error: 'Invalid prompt. Please provide a valid text prompt.' })
+    if (!prompt || typeof prompt !== 'string') {
+      return res
+        .status(400)
+        .json({ error: 'Invalid prompt. Please provide a valid text prompt.' })
+    }
+
+    const store = await loadStore()
+    const results = await store.similaritySearch(prompt, 2)
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4',
+      temperature: 0,
+      messages: [
+        {
+          role: 'assistant',
+          content:
+            'You are a helpful AI assistant, answer any questions to the best of your ability.',
+        },
+        {
+          role: 'user',
+          content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't lie and make up stuff. Just say you need more context.
+          Question: ${prompt}
+          
+          Context: ${results.map((r) => r.pageContent).join('\n')}`,
+        },
+      ],
+    })
+    res.status(200).send({
+      answer: `${response.choices[0].message.content}`,
+      sources: 'Uploaded PDF', // Store PDF title and replace in source
+      // sources: `${results.map((r) => r.metadata.source).join(', ')}`,
+    })
+  } catch (error) {
+    console.error('Error processing document:', error)
+    res.status(500).json({ error: 'Error processing the document' })
   }
-
-  const store = await loadStore()
-  const results = await store.similaritySearch(prompt, 2)
-
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4',
-    temperature: 0,
-    messages: [
-      {
-        role: 'assistant',
-        content:
-          'You are a helpful AI assistant, answer any questions to the best of your ability.',
-      },
-      {
-        role: 'user',
-        content: `Answer the following question using the provided context. If you cannot answer the question with the context, don't lie and make up stuff. Just say you need more context.
-        Question: ${prompt}
-  
-        Context: ${results.map((r) => r.pageContent).join('\n')}`,
-      },
-    ],
-  })
-  res.status(200).send({
-    answer: `${response.choices[0].message.content}`,
-    sources: 'Uploaded PDF', // Store PDF title and replace in source
-    // sources: `${results.map((r) => r.metadata.source).join(', ')}`,
-  })
 }
